@@ -7,56 +7,79 @@
         </title>
     </head>
     <body>
-        <script>
+        <script>            
             const choice = ["ROCK", "PAPER", "SCISSORS"];
             function getComputerChoice () {
                 return choice[Math.floor(Math.random() * choice.length)];
             }
             
             let playerChoice = prompt("Please enter your choice: ");
-
             let playerSelection = playerChoice.toUpperCase();
 
-            const computerSelection = getComputerChoice();
+            let computerSelection = getComputerChoice();
+
+            let computerScore = 0;
+            let yourScore = 0;
 
             function playRound(playerSelection, computerSelection) {
+                                                
                 if(playerSelection === computerSelection) {
-                    console.log ("Tie Round");
+                    console.log ("Tie Round");                    
                 }
 
                 else if(playerSelection === "ROCK") {
                     if(computerSelection === "PAPER") {
                         console.log ("You lose! Paper beats Rock.");
+                        computerScore = ++computerScore;
                     }
 
-                    else if(computerSelection="SCISSORS") {
+                    else if(computerSelection === "SCISSORS") {
                         console.log ("You win! Rock beats Scissors");
+                        yourScore = ++yourScore;
                     }
                 }
                 
                 else if(playerSelection === "PAPER") {
                     if(computerSelection === "SCISSORS") {
                         console.log ("You lose! Scissors beats Paper.");
-                    }
+                        computerScore = ++computerScore;
+                }
 
-                    else if(computerSelection="ROCK") {
+                    else if(computerSelection === "ROCK") {
                         console.log ("You win! Paper beats Rock.");
+                        yourScore = ++yourScore;
                     }
                 }
 
                 else if(playerSelection === "SCISSORS") {
                     if(computerSelection === "ROCK") {
                         console.log ("You lose! Rock beats Scissors.");
+                        computerScore = ++computerScore;
                     }
 
-                    else if(computerSelection="PAPER") {
+                    else if(computerSelection === "PAPER") {
                         console.log ("You win! Scissors beats Paper.");
+                        yourScore = ++yourScore;
                     }
                 }
             }
 
-            playRound(playerSelection, computerSelection);
+            //playRound(playerSelection, computerSelection);
 
+            function game() {
+                return playRound(playerSelection, computerSelection);
+            }
+
+            //game();
+
+            for (let i = 0; i < 5; i++) {
+                playerChoice = prompt("Please enter your choice: ");
+                playerSelection = playerChoice.toUpperCase();
+                computerSelection = getComputerChoice();
+                game();
+                console.log (`Your Score ${yourScore} Computer Score ${computerScore}`);
+            }          
+                                     
         </script>
     </body>
 </html>
